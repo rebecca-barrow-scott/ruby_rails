@@ -1,0 +1,16 @@
+<div style="background-color:rgb(195, 247, 205); padding:5px;">
+    <%= form_with model: @pdf, local:true do |form| %>
+        <p>
+        <%= form.label :name %><br>
+        <%= form.text_area :name %>
+        </p>
+        <p>
+        <%= form.label :file %><br>
+        <%= form.file_field :file %>
+        </p>
+
+        <p>
+        <%= form.submit %>
+        </p>
+    <% end %>
+</div>

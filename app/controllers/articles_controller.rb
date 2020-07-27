@@ -5,11 +5,11 @@ class ArticlesController < ApplicationController
     @articles = Article.all
     respond_to do |format|
       format.html
-      format.pdf do 
-        pdf = ArticlePdf.new(@articles)
-        send_data pdf.render, filename: 'articles.pdf', type: 'application/pdf', dispostion: 'inline'
+        format.pdf do 
+          pdf = ArticlePdf.new(@articles)
+          send_data pdf.render, filename: 'articles.pdf', type: 'application/pdf', dispostion: 'inline'
+        end
       end
-    end
     end
     
     def show
