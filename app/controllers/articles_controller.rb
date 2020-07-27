@@ -6,8 +6,7 @@ class ArticlesController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do 
-        pdf = Prawn::Document.new
-        pdf.text 'Hello'
+        pdf = ArticlePdf.new(@articles)
         send_data pdf.render, filename: 'articles.pdf', type: 'application/pdf', dispostion: 'inline'
       end
     end
