@@ -3,6 +3,14 @@ class ArticlesController < ApplicationController
     
     def index
     @articles = Article.all
+    respond_to do |format|
+      format.html
+      format.pdf do 
+        pdf = Prawn::Document.new
+        pdf.text 'Hello'
+        send_data pdf.render, filename: 'articles.pdf', type: 'application/pdf', dispostion: 'inline'
+      end
+    end
     end
     
     def show
