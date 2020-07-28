@@ -1,19 +1,20 @@
 class PdfsController < ApplicationController
     def index
         @pdf = Pdf.new
-        image = MiniMagick::Image.open "articles.pdf"
-        MiniMagick::Tool::Convert.new do |convert|
-          convert.background "white"
-          convert.flatten
-          convert.density 150
-          convert.quality 100
-          convert << image.pages.first.path
-          convert << "png8:preview.png"
-        end
     end
 
     def show
         @pdf = Pdf.find(params[:id])
+        image = MiniMagick::Image.open @pdf.pdf_file
+        MiniMagick::Tool::Convert.new do |convert|
+          convert.background "white"
+          convert.flatten
+          convert.density 300
+          convert.quality 200
+          convert.resize "600x600"
+          convert << image.pages.first.path
+          convert << "png8:app/assets/images/preview.png"
+        end
     end
 
     def create

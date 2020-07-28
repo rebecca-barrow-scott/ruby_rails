@@ -7,7 +7,10 @@ class ArticlesController < ApplicationController
       format.html
         format.pdf do 
           pdf = ArticlePdf.new(@articles)
-          send_data pdf.render, filename: 'articles.pdf', type: 'application/pdf', dispostion: 'inline'
+          send_data pdf.render, 
+            filename: 'articles.pdf', 
+            type: 'application/pdf', 
+            dispostion: 'inline'
         end
       end
     end
