@@ -1,0 +1,9 @@
+<div style="background-color:rgb(195, 247, 205); padding:5px;">
+    <% if @pdf.pdf_file.attached? %>
+        <h1><%= @pdf.name %> was successfully attached</h1>
+    <% else %>
+        <h1>Error: Something went wrong</h1>
+    <% end %>
+</p>
+<%= link_to 'Back', articles_path %>
+</div>

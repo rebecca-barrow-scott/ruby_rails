@@ -16,3 +16,4 @@
 //= require turbolinks
 //= require micromodal/dist/micromodal
 //= require_tree .
+//= require 'mini_magick'
