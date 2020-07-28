@@ -1,8 +1,8 @@
 <div style="background-color:rgb(195, 247, 205); padding:5px;">
     <% if @pdf.pdf_file.attached? %>
         <h1><%= @pdf.name %> was successfully attached</h1>
-        <% for i in 0..@pdf_length%>
-            <%= image_tag ("/assets/#{i+1}.png")%>
+        <% for i in 1..@pdf_length%>
+            <%= image_tag ("/assets/#{i}.png")%>
         <% end %>
     <% else %>
         <h1>Error: Something went wrong</h1>

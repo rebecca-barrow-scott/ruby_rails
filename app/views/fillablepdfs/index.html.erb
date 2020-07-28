@@ -1,0 +1,16 @@
+<div style="background-color:rgb(247, 245, 181); padding:5px;">
+    <h1>Fillable Form</h1>
+    <%= form_with model: @fillablepdf, local:true do |form| %>
+        <p>
+        <%= form.label :name %><br>
+        <%= form.text_area :name %>
+        </p>
+        <p>
+        <%= form.label :pdf_file %><br>
+        <%= form.file_field :pdf_file %>
+        </p>
+        <p>
+        <%= form.submit "Attach PDF"%>
+        </p>
+    <% end %>
+</div>
