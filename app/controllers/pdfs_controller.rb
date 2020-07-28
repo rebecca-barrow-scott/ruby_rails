@@ -5,15 +5,21 @@ class PdfsController < ApplicationController
 
     def show
         @pdf = Pdf.find(params[:id])
+        @pdf_length = 0
+
+        def save_png_images(to_image_temp_path, index, page)
+          image_file = "#{to_image_temp_path}/#{index+1}.png"
+          MiniMagick::Tool::Convert.new do |convert|
+            convert << page.path
+            convert.resize("600X600")
+            convert << image_file
+          end
+        end
+
         image = MiniMagick::Image.open @pdf.pdf_file
-        MiniMagick::Tool::Convert.new do |convert|
-          convert.background "white"
-          convert.flatten
-          convert.density 300
-          convert.quality 200
-          convert.resize "600x600"
-          convert << image.pages.first.path
-          convert << "png8:app/assets/images/preview.png"
+        image.pages.each_with_index do |page, index|
+          save_png_images("app/assets/images", index, page)
+          @pdf_length += 1
         end
     end
 
