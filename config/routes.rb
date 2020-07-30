@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   end
   resources :pdfs
   resources :fillablepdfs
- 
+  resources :dashboards
   root 'welcome#index'
 end

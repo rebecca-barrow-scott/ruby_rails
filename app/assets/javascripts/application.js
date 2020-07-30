@@ -17,3 +17,4 @@
 //= require micromodal/dist/micromodal
 //= require_tree .
 //= require 'mini_magick'
+// require 'active_pdftk'

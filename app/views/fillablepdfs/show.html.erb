@@ -1,1 +1,5 @@
 <h1>Show</h1>
+<%= @content.map do |key, value|%>
+    <b><%= key %></b>
+    <span><%= value %></span><br>
+    <% end %>
