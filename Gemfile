@@ -35,7 +35,9 @@ gem "mini_magick"
 gem 'hexapdf'
 gem 'active_pdftk', git: "https://github.com/tcocca/active_pdftk.git"
 gem 'axlsx', '~> 2.0', '>= 2.0.1'
-
+gem 'rubyXL', '~> 3.3', '>= 3.3.21'
+gem "chartkick"
+gem 'groupdate'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

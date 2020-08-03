@@ -18,3 +18,4 @@
 //= require_tree .
 //= require 'mini_magick'
 // require 'active_pdftk'
+// require 'rubyXL'

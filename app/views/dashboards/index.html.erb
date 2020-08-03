@@ -1,1 +1,55 @@
-<h1>index</h1>
+<html>
+<head>
+    <link rel='stylesheet' type'text/css' href='../../assets/stylesheets/dashboards.scss'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class='row' id='task-bar'>
+        <div class='col-sm-2'>
+        <div class='text-center'>Development Tools</div>
+        </div>
+        <div class='col-sm-5'>
+        <div class='text-center'><%= link_to "Destroy All", dashboard_path(@db_users[0]), method: :delete, data: {confirm: 'Are you sure?'} %></div>
+        </div>
+        <div class='col-sm-5'>
+        <div class='text-center'><%= link_to "More data", new_dashboard_path %></div>
+        </div>
+    </div>
+    <h1>Users</h1>
+    <div class="row">
+        <div class='col-sm-4'>
+            <h2 class='text-center'>Total Users</h2>
+            <h4 class='text-center'><%=@db_users.count%></h4>
+        </div>
+        <div class='col-sm-8'>
+            <h2 class='placeholder'>Chart of users at an event</h2>
+        </div>
+    </div>
+    <table class='table'>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Gender</th>
+            <th>Date of Birth</th>
+            <th>City</th>
+        <tr>
+        <%= @db_users.each do |user|%>
+            <tr>
+                <td><%= user.first_name %></td>
+                <td><%= user.last_name %></td>
+                <td><%= user.gender %></td>
+                <td><%= user.dob %></td>
+                <td><%= user.city %></td>
+            </tr>
+        <% end %>
+    </table>
+    <h3>More Information</h3>
+    <h4>User Location</h4>
+    <%= area_chart @db_users.group(:city).count %>
+    <h4>User Gender</h4>
+    <%= column_chart @db_users.group(:gender).count %>
+    <h4>User Age</h4>
+    <%= line_chart @db_users.group(:dob).count %>
+</body>
+</html>
