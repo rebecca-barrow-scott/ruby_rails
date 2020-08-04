@@ -1,0 +1,33 @@
+<html>
+<head>
+    <link rel='stylesheet' type'text/css' href='../../assets/stylesheets/dashboards.scss'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+</head>
+<body>
+<div class='container'>
+    <h1 id='row_content'>All Users</h1>
+    <h5><%= link_to 'Back to dashboard', dashboards_path %></h5>
+    <div class="row" id='row_content'>
+        <table class='table'>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Gender</th>
+            <th>Date of Birth</th>
+            <th>City</th>
+        </tr>
+            <% @db_users.each do |user|%>
+                <tr>
+                    <td><%= user.first_name %></td>
+                    <td><%= user.last_name %></td>
+                    <td><%= user.gender %></td>
+                    <td><%= user.dob %></td>
+                    <td><%= user.city %></td>
+                </tr>
+            <% end %>
+        </table>
+    </div>
+</div>
+</body>
+</html>

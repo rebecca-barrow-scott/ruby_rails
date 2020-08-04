@@ -5,51 +5,93 @@
 
 </head>
 <body>
-    <div class='row' id='task-bar'>
-        <div class='col-sm-2'>
-        <div class='text-center'>Development Tools</div>
+<div class='container'>
+    <div class="navbar navbar-default navbar-fixed-top" id="taskbar">
+            <div class='col-2'>
+            <div class='text-center'>Development Tools</div>
+            </div>
+            <div class='col-5'>
+            <div class='text-center'><%= link_to "Reset Data", dashboard_path(@db_users[0]), method: :delete, data: {confirm: 'Are you sure?'} %></div>
+            </div>
+            <div class='col-5'>
+            <div class='text-center'><%= link_to "More data", new_dashboard_path %></div>
+            </div>
         </div>
-        <div class='col-sm-5'>
-        <div class='text-center'><%= link_to "Destroy All", dashboard_path(@db_users[0]), method: :delete, data: {confirm: 'Are you sure?'} %></div>
+
+        <h1 id='row_content'>Dashboard</h1>
+        <div class="row" id='row_content'>
+            <div class='col-2 my-auto'>
+                <div class='counts'>
+                    <div class='row'>
+                        <div class='col-12'>
+                            <h3 class='text-center'>Total Users</h3>
+                            <h5 class='text-center'><%=@db_users.count%></h5>
+                            <br>
+                        </div>
+                        <div class='col-12'>
+                            <h3 class='text-center'>Total Events</h3>
+                            <h5 class='text-center'><%=@db_events.count%></h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class='col-10'>
+                <%= column_chart @refined_ue, :library => {hAxis: {title: "Event"}, vAxis: {title: "Number of Users"}, title: "Users assigned to each event"} %>
+            </div>
         </div>
-        <div class='col-sm-5'>
-        <div class='text-center'><%= link_to "More data", new_dashboard_path %></div>
+        <div class="row" id='row_content'>
+            <table class='table'>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Gender</th>
+                    <th>Date of Birth</th>
+                    <th>City</th>
+                </tr>
+                <% if @db_users.length > 5 %>
+                    <% for i in 0..4%>
+                        <tr>
+                            <td><%= @db_users[i].first_name %></td>
+                            <td><%= @db_users[i].last_name %></td>
+                            <td><%= @db_users[i].gender %></td>
+                            <td><%= @db_users[i].dob %></td>
+                            <td><%= @db_users[i].city %></td>
+                        </tr>
+                    <% end %>
+                    <tr>
+                        <td colspan='5'><%= link_to 'See more...', dashboard_path(@db_users[0])%></td>
+                    </tr>
+                <% else %>
+                    <% @db_users.each do |user|%>
+                        <tr>
+                            <td><%= user.first_name %></td>
+                            <td><%= user.last_name %></td>
+                            <td><%= user.gender %></td>
+                            <td><%= user.dob %></td>
+                            <td><%= user.city %></td>
+                        </tr>
+                    <% end %>
+                <% end %>
+            </table>
+        </div>
+        <div class="row" id='row_content'>
+            <h3>More Information</h3>
+        </div>
+        <div class="row" id='row_content'>
+            <h4>User Location</h4>
+            <%= area_chart @db_users.group(:city).count %>
+        </div>
+        <div class="row" id='row_content'>
+            <h4>User Gender</h4>
+            <%= pie_chart @db_users.group(:gender).count %>
+        </div>
+        <div class="row" id='row_content'>
+            <h4>User Age</h4>
+            <%= line_chart @ages %>
         </div>
     </div>
-    <h1>Users</h1>
-    <div class="row">
-        <div class='col-sm-4'>
-            <h2 class='text-center'>Total Users</h2>
-            <h4 class='text-center'><%=@db_users.count%></h4>
-        </div>
-        <div class='col-sm-8'>
-            <h2 class='placeholder'>Chart of users at an event</h2>
-        </div>
-    </div>
-    <table class='table'>
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Gender</th>
-            <th>Date of Birth</th>
-            <th>City</th>
-        <tr>
-        <%= @db_users.each do |user|%>
-            <tr>
-                <td><%= user.first_name %></td>
-                <td><%= user.last_name %></td>
-                <td><%= user.gender %></td>
-                <td><%= user.dob %></td>
-                <td><%= user.city %></td>
-            </tr>
-        <% end %>
-    </table>
-    <h3>More Information</h3>
-    <h4>User Location</h4>
-    <%= area_chart @db_users.group(:city).count %>
-    <h4>User Gender</h4>
-    <%= column_chart @db_users.group(:gender).count %>
-    <h4>User Age</h4>
-    <%= line_chart @db_users.group(:dob).count %>
 </body>
+<footer>
+    <%= link_to 'Login Page', '/' %>
+</footer>
 </html>

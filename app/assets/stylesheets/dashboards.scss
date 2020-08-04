@@ -2,15 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-#task-bar{
+#taskbar{
     background-color: lightblue;
     padding: 10px 0px;
+    margin: 0;
 }
-
-body{
-    padding: 0 10px;
+#row_content{
+    margin: 15px 0px;
 }
-
-.placeholder{
-    color: lightgray;
+footer{
+    background-color: lightblue;
+    padding: 20px 20px;
 }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_30_064656) do
+ActiveRecord::Schema.define(version: 2020_08_03_234216) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -49,6 +49,13 @@ ActiveRecord::Schema.define(version: 2020_07_30_064656) do
     t.index ["article_id"], name: "index_comments_on_article_id"
   end
 
+  create_table "events", force: :cascade do |t|
+    t.string "name"
+    t.string "location"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "fillablepdfs", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -57,6 +64,13 @@ ActiveRecord::Schema.define(version: 2020_07_30_064656) do
 
   create_table "pdfs", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_events", force: :cascade do |t|
+    t.decimal "user_id"
+    t.decimal "event_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
